@@ -1,8 +1,12 @@
 package encryptdecrypt;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        String s = "we found a treasure!";
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+        int key = sc.nextInt();
 
         char[] sArr = s.toCharArray(); //convert to array
         for (int i = 0; i < sArr.length; i++) {
@@ -12,8 +16,9 @@ public class Main {
                 continue;
             }
 
-            //encryption (a→z, b→y, c→x, ... x→c, y →b, z→a)
-            sArr[i] = (char) (97 + (122 - num));
+            //encryption by shifting letter
+            int newNum = num + key;
+            sArr[i] = newNum > 122 ? (char) (newNum - 122 + 96) : (char) newNum;
         }
 
         //output result
